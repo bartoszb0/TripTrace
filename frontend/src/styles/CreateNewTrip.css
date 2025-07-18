@@ -1,0 +1,29 @@
+.creationForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.creationForm > label {
+    margin-top: 20px;
+}
+
+.datesInput {
+    display: flex;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.creationForm > button {
+    margin-top: 50px;
+}
+
+.formDescription {
+    width: 400px;
+    height: 250px;
+}
+
+.photosInput {
+    border: none;
+}
