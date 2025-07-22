@@ -42,15 +42,27 @@ export default function CreateNewTrip() {
     return true;
   }
 
+  function validatePublicity(publicity) {
+    if (publicity !== "public" && publicity !== "private") {
+      setError({
+        display: true,
+        message: "Incorrect publicity setting",
+      });
+      return false;
+    }
+    return true;
+  }
+
   function validateFields(
     destination,
     startDate,
     endDate,
     description,
-    photos
+    photos,
+    publicity
   ) {
     // See if all fields are passed
-    if (!destination || !description || !startDate || !endDate) {
+    if (!destination || !description || !startDate || !endDate || !publicity) {
       setError({
         display: true,
         message: "All fields are required",
@@ -68,6 +80,11 @@ export default function CreateNewTrip() {
       return false;
     }
 
+    //publicity
+    if (!validatePublicity(publicity)) {
+      return false;
+    }
+
     return true;
   }
 
@@ -77,8 +94,18 @@ export default function CreateNewTrip() {
     const endDate = formData.get("endDate");
     const description = formData.get("description");
     const photos = formData.getAll("photos");
+    const publicity = formData.get("publicity");
 
-    if (!validateFields(destination, startDate, endDate, description, photos)) {
+    if (
+      !validateFields(
+        destination,
+        startDate,
+        endDate,
+        description,
+        photos,
+        publicity
+      )
+    ) {
       return;
     }
 
@@ -119,6 +146,15 @@ export default function CreateNewTrip() {
           className="photosInput"
           multiple
         ></input>
+
+        <label htmlFor="publicity">Publicity</label>
+        <select id="publicity" name="publicity" defaultValue="">
+          <option value="" disabled>
+            Select publicity option
+          </option>
+          <option value="private">Private</option>
+          <option value="public">Public</option>
+        </select>
 
         <button type="submit">Create Trip</button>
       </form>
