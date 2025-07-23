@@ -1,16 +1,14 @@
 import "../styles/CreateNewTrip.css";
 import ShowError from "../components/ShowError";
-import { useState, useEffect } from "react";
-import getCountries from "../countries";
+import { useState } from "react";
+import COUNTRIES from "../data/countriesData";
 
 export default function CreateNewTrip() {
   // TODO zrobic zeby form sie nie resetowal przy errorze
 
-  const [countries, setCountries] = useState([]);
-
-  const countriesElement = countries.map((country, index) => {
+  const countriesElement = COUNTRIES.map((country, index) => {
     return (
-      <option key={index} value={country.toLowerCase()}>
+      <option key={index} value={country}>
         {country}
       </option>
     );
@@ -21,19 +19,11 @@ export default function CreateNewTrip() {
     message: "",
   });
 
-  useEffect(() => {
-    getCountries()
-      .then((data) => {
-        setCountries(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-
   function validateDestination(country) {
-    const formattedCountry = country.charAt(0).toUpperCase() + country.slice(1);
-    if (!countries.includes(formattedCountry)) {
+    const normalizedDestination = country.toLowerCase();
+    const lowercasedCountries = COUNTRIES.map((c) => c.toLowerCase());
+
+    if (!lowercasedCountries.includes(normalizedDestination)) {
       setError({
         display: true,
         message: "Incorrect country",
@@ -145,6 +135,7 @@ export default function CreateNewTrip() {
     }
 
     console.log("ok");
+    // TODO send data
   }
 
   return (

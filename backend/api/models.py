@@ -2,14 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
-
 class Trip(models.Model):
     PUBLICITY_CHOICES = [
         ('public', 'Public'),
         ('private', 'Private')
     ]
 
-    destination = models.CharField() # change it, max length
+    destination = models.CharField(
+        max_length=100,
+    )
     startDate = models.DateField()
     endDate  = models.DateField()
     description = models.TextField() # max length?
