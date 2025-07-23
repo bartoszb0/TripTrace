@@ -1,15 +1,48 @@
 import "../styles/CreateNewTrip.css";
 import ShowError from "../components/ShowError";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import getCountries from "../countries";
 
 export default function CreateNewTrip() {
-  // zrobic zeby form sie nie resetowal przy errorze
-  // ogarnac co zrobic z destynacja
+  // TODO zrobic zeby form sie nie resetowal przy errorze
+
+  const [countries, setCountries] = useState([]);
+
+  const countriesElement = countries.map((country, index) => {
+    return (
+      <option key={index} value={country.toLowerCase()}>
+        {country}
+      </option>
+    );
+  });
 
   const [error, setError] = useState({
     display: false,
     message: "",
   });
+
+  useEffect(() => {
+    getCountries()
+      .then((data) => {
+        setCountries(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  function validateDestination(country) {
+    const formattedCountry = country.charAt(0).toUpperCase() + country.slice(1);
+    if (!countries.includes(formattedCountry)) {
+      setError({
+        display: true,
+        message: "Incorrect country",
+      });
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   function validateDates(dateOne, dateTwo) {
     if (new Date(dateOne) > new Date(dateTwo)) {
@@ -70,17 +103,18 @@ export default function CreateNewTrip() {
       return false;
     }
 
-    // Dates validation
+    if (!validateDestination(destination)) {
+      return false;
+    }
+
     if (!validateDates(startDate, endDate)) {
       return false;
     }
 
-    // photos
     if (!validatePhotos(photos)) {
       return false;
     }
 
-    //publicity
     if (!validatePublicity(publicity)) {
       return false;
     }
@@ -89,7 +123,8 @@ export default function CreateNewTrip() {
   }
 
   function handleSubmit(formData) {
-    const destination = formData.get("destination"); // podzielić na country i city, dodać z listy wyboru
+    const destination = formData.get("destination");
+    const city = formData.get("city");
     const startDate = formData.get("startDate");
     const endDate = formData.get("endDate");
     const description = formData.get("description");
@@ -119,8 +154,16 @@ export default function CreateNewTrip() {
         <ShowError message={error.message} setError={setError} />
       )}
       <form action={handleSubmit} className="creationForm">
-        <label htmlFor="destination">Destination</label>
-        <input id="destination" name="destination"></input>
+        <label htmlFor="destination">Destination Country</label>
+        <select id="destination" name="destination" defaultValue="">
+          <option value="" disabled>
+            Choose country
+          </option>
+          {countriesElement}
+        </select>
+
+        <label htmlFor="city">City (optional)</label>
+        <input id="city" name="city"></input>
 
         <div className="datesInput">
           <label htmlFor="startDate">Start date:</label>
