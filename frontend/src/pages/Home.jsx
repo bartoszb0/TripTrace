@@ -1,12 +1,13 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    return (
-        <>
-            <h1>Home</h1>
-            <button onClick={() => navigate('/newtrip')}>+ New Trip</button>
-        </>
-    )
+  return (
+    <>
+      <h1>Home</h1>
+      <button onClick={() => navigate("/newtrip")}>+ New Trip</button>
+      <button onClick={() => navigate("/logout")}>Logout</button>
+    </>
+  );
 }

@@ -1,7 +1,20 @@
-import Form from "../components/Form"
+import Form from "../components/Form";
+import "../styles/LoginRegister.css";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-	return <Form route="/api/token/" method="login"/> 
+  const navigate = useNavigate();
+
+  return (
+    <>
+      <Form route="/api/token/" method="login" />
+      <div className="linkToDiv">
+        <a className="linkTo" onClick={() => navigate("/register")}>
+          Don't have an account? Register
+        </a>
+      </div>
+    </>
+  );
 }
 
-export default Login
+export default Login;

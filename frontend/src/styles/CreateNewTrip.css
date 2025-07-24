@@ -1,29 +1,76 @@
+.headline {
+  display: flex;
+  justify-content: center;
+}
+
 .creationForm {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .creationForm > label {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .datesInput {
-    display: flex;
-    margin-top: 20px;
-    gap: 20px;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.datesInput > input {
+  width: 180px;
 }
 
 .creationForm > button {
-    margin-top: 50px;
+  margin-top: 50px;
 }
 
 .formDescription {
-    width: 400px;
-    height: 250px;
+  width: 600px;
+  height: 250px;
 }
 
-.photosInput {
-    border: none;
+.creationForm > input,
+select,
+textarea,
+.datesInput > input {
+  font-family: "Cabin", sans-serif;
+  padding: 5px;
+  background-color: rgb(66, 66, 66);
+  color: white;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+.creationForm > input::placeholder {
+  color: rgb(207, 207, 207);
+}
+
+.creationForm > input,
+select {
+  width: 600px;
+}
+
+label {
+  margin-bottom: 3px;
+}
+
+.submitBut {
+  width: 300px;
+  height: 50px;
+  background-color: rgb(22, 22, 22);
+  border: 2px solid rgb(70, 146, 55);
+  border-radius: 10px;
+  font-size: 20px;
+  font-family: "Cabin", sans-serif;
+  color: white;
+}
+
+.submitBut:hover {
+  background-color: rgb(25, 41, 23);
+  cursor: pointer;
 }

@@ -1,12 +1,26 @@
 .errorBox {
-    background-color: rgb(255, 172, 172);
-    padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  background-color: rgb(255, 91, 91);
+  font-size: 30px;
+  padding: 10px;
+  color: black;
 }
 
 .errorBox > button {
-    background-color: rgb(255, 131, 131);
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 30px;
+  background-color: rgb(201, 59, 59);
+  border: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.errorBox > button:hover {
+  background-color: rgb(255, 61, 61);
+  border: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  font-size: 20px;
 }

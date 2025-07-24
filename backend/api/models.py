@@ -10,10 +10,10 @@ class Trip(models.Model):
 
     destination = models.CharField(
         max_length=100,
-    )
+    ) # need to validate ts
     startDate = models.DateField()
     endDate  = models.DateField()
-    description = models.TextField() # max length?
+    description = models.TextField(max_length=450) # max length?
     photos = models.ImageField() # work on it, instal Pillow (?)
     publicity = models.CharField(
         max_length=7,
@@ -30,6 +30,8 @@ class Trip(models.Model):
             raise ValidationError("End date cannot be before start date.")
         
         # TODO more validations
+
+        # TODO photos length at least one
 
 
 

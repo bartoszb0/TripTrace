@@ -5,8 +5,8 @@
 }
 
 .loader {
-  border: 5px solid #f3f3f3;
-  border-top: 5px solid #000000;
+  border: 5px solid #2c2c2c;
+  border-top: 5px solid rgb(70, 146, 55);
   border-radius: 50%;
   width: 30px;
   height: 30px;

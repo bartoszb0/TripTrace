@@ -4,8 +4,6 @@ import { useState } from "react";
 import COUNTRIES from "../data/countriesData";
 
 export default function CreateNewTrip() {
-  // TODO zrobic zeby form sie nie resetowal przy errorze
-
   const countriesElement = COUNTRIES.map((country, index) => {
     return (
       <option key={index} value={country}>
@@ -112,7 +110,10 @@ export default function CreateNewTrip() {
     return true;
   }
 
-  function handleSubmit(formData) {
+  function handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
     const destination = formData.get("destination");
     const city = formData.get("city");
     const startDate = formData.get("startDate");
@@ -140,11 +141,11 @@ export default function CreateNewTrip() {
 
   return (
     <>
-      <h1>form here</h1>
+      <h1 className="headline">Create New Trip</h1>
       {error.display && (
         <ShowError message={error.message} setError={setError} />
       )}
-      <form action={handleSubmit} className="creationForm">
+      <form onSubmit={handleSubmit} className="creationForm">
         <label htmlFor="destination">Destination Country</label>
         <select id="destination" name="destination" defaultValue="">
           <option value="" disabled>
@@ -154,7 +155,7 @@ export default function CreateNewTrip() {
         </select>
 
         <label htmlFor="city">City (optional)</label>
-        <input id="city" name="city"></input>
+        <input id="city" name="city" placeholder="e.g Warsaw"></input>
 
         <div className="datesInput">
           <label htmlFor="startDate">Start date:</label>
@@ -172,7 +173,7 @@ export default function CreateNewTrip() {
           className="formDescription"
         ></textarea>
 
-        <label htmlFor="photos">Photos (zrobic drag and drop)</label>
+        <label htmlFor="photos">Photos</label>
         <input
           id="photos"
           type="file"
@@ -190,7 +191,9 @@ export default function CreateNewTrip() {
           <option value="public">Public</option>
         </select>
 
-        <button type="submit">Create Trip</button>
+        <button type="submit" className="submitBut">
+          Create Trip
+        </button>
       </form>
     </>
   );

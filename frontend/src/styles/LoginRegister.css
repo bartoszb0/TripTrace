@@ -1,0 +1,48 @@
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.form-container > input {
+  width: 300px;
+  padding: 5px;
+  height: 30px;
+  color: white;
+  background-color: rgb(41, 41, 41);
+  border: 1px solid black;
+  border-radius: 5px;
+  font-family: "Cabin", sans-serif;
+}
+
+.form-container > button {
+  width: 150px;
+  height: 30px;
+  background-color: rgb(34, 34, 34);
+  border: 1px solid rgb(70, 146, 55);
+  border-radius: 10px;
+  font-size: 15px;
+  color: white;
+  font-family: "Cabin", sans-serif;
+  cursor: pointer;
+}
+
+.linkToDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.linkTo {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.linkTo:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
